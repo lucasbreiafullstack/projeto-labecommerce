@@ -1,9 +1,9 @@
 # Projeto labecommerce
 
-É o primeiro projeto do back-end, onde praticamos toda a base de criação de uma API vinculada a um banco de dados real.<br><br>
-Ele tem uma particularidade: seus requisitos são implementados ao longo dos exercícios pós aula. Isso significa que caso você siga o desenvolvimento das aulas, quando chegar na data de entrega já terá um projeto funcional e quase pronto para entrega.
-<br>
-### Conteúdos abordados
+É o meu primeiro projeto do back-end, onde pratico toda a base de criação de uma API vinculada a um banco de dados real.<br>
+
+## Conteúdos abordados
+
 - NodeJS
 - Typescript
 - Express
@@ -11,362 +11,165 @@ Ele tem uma particularidade: seus requisitos são implementados ao longo dos exe
 - Knex
 - Postman
 
-# ⚠⚠⚠ Importante!!! ⚠⚠⚠
-Para critérios de correção serão considerados rigorosamente a nomenclatura de: Tabelas, colunas e caminhos(path) das requisições. Portando, siga o padrão de nomenclaturas apresentado logo abaixo.
-
-## Banco de dados 🎲🎲
-O nome das tabelas e das colunas devem ser em letras minúsculas, sem acento, sem caracteres especiais e em _snake_case_(caso sejas palavras compostas. exp.: arco_iris). Por isso, siga restritamente a nomeclatura proposta!
-
-O banco de dados deve conter obrigatóriamente quatro tabelas:
-
-## Tabela de Usuários: 
-### Nome da Tabela:
-- users
-### Nome das colunas
-- id
-- name
-- email
-- password
-- created_at
-
-## Tabela de Produtos 🛒🛒
-### Nome da Tabela:
-- products
-### Nome das colunas
-- id 
-- name
-- price
-- description
-- image_url
-
-### Tabela de Registro de Compras 💸💸
-
-### Nome da Tabela:
-- purchases
-### Nome das colunas
-- id 
-- buyer
-- total_price
-- created_at
-- paid
-
-## Tabela de Registro de Produtos Comprados 🧾🧾
-### Nome da Tabela:
-purchases_products
-### Nome das colunas
-- purchase_id
-- product_id
-- quantity
---------------------------
-<br>
-
-#### Para realizar a modelagem do seu banco de dados e das tabelas, considere a imagem a baixo. 
-
-Nela são mostradas as relações entre as tabelas :
-
+# Banco de dados
 ![image](https://user-images.githubusercontent.com/29845719/214396608-ddcfd097-e615-44f9-acbe-f815f9abb83f.png)
 https://dbdiagram.io/d/63c6e8e5296d97641d7a4666
 
-<br>
----------------
+## URLs de acesso
+Documentação da API com as instruções de uso de cada endpoint da aplicação Labecommerce.<br>
 
-## Caminhos das Requisições (Paths) 🛣🛣
-Os caminhos devem ser definidos em letras minúsculas, sem acento e sem caracteres especiais. Siga conforme o modelo de documentação proposto.
+[Labecommerce API](https://documenter.getpostman.com/view/24460684/2s8ZDU64QY)
 
-### Requisições de Usuários
-- /users
-### Requisições de Produtos
-- /products
-### Requisições de Compras
-- /purchases
----------------
-# Lista de requisitos - Obrigatórios
+# Lista de requisitos
 
-### 1. Implementar os Endpoints :
+- Endpoints
 
-    - [ ]  Get all users
     - [ ]  Create user
+    - [ ]  Get all users
+    - [ ]  Edit user by id
+    - [ ]  Delete user by id
     - [ ]  Create product
-    - [ ]  Get all products funcionalidade 1
-    - [ ]  Get all products funcionalidade 2
+    - [ ]  Get all products
+    - [ ]  Get product by name
+    - [ ]  Get product by id
     - [ ]  Edit product by id
+    - [ ]  Delete product by id
     - [ ]  Create purchase
-    - [ ]  Delete purchase by id
+    - [ ]  Edit purchase by id
+    - [ ]  Get all purchases
     - [ ]  Get purchase by id
-
-### 2. Documentação no Postman de todos os endpoints (obrigatória para correção), descrevendo os endpoints e colocando os exemplos de respostas 
-
-### 3. Criar o arquivo  README.md , explicando seu projeto com prints das respostas
-
-Aqui está uma Documentação para referência (como deve ficar)
-https://documenter.getpostman.com/view/21151478/2s8ZDeSdbz
-
--------------------
+    - [ ]  Delete purchase by id
 
 # Exemplos de requisição
+Não precisa cadastrar o mesmo nome, email e quaisquer outros valores vistos aqui nos exemplos de saída. Porém, lembre-se de respeitar a estrutura pedida no banco de dados (nome das tabelas e colunas) e os nomes das propriedades na resposta da API.
 
-**Não precisa cadastrar o mesmo nome, email e quaisquer outros valores vistos aqui nos exemplos de saída. Porém, deve-se respeitar rigorosamente a estrutura pedida no banco de dados (nome das tabelas e colunas), nomes das propriedades na resposta da API e caminho dos endpoints**
+Colunas a mais na tabela não tem problema, por exemplo adicionar uma 'category' dentro da tabela 'products', mas a falta de uma coluna ou propriedade na resposta será considerada falha de implementação!
 
--------------------
-
-## Get all users
-Retorna todas as pessoas cadastradas.<br>
-Dica: atenção com o nome da propriedade createdAt! Ela deve vir em camelCase, apesar de estar em snake_case no banco de dados.
-```typescript
-// Request
-// GET /users
-
-// Response
-// status 200 OK
-[
-    {
-        id: "u001",
-        name: "Fulano",
-        email: "fulano@email.com",
-        password: "fulano123",
-        createdAt: "2023-01-15 09:12:42"
-    },
-    {
-        id: "u002",
-        name: "Ciclana",
-        email: "ciclana@email.com",
-        password: "ciclana99",
-        createdAt: "2023-01-17 12:35:28"
-    }
-]
-```
-
-<br>
-
--------------------------
-## Create user
-Cadastra uma nova pessoa.
-```typescript
-// Request
-// POST /users
-// body JSON
-{
-    "id": "u003",
-    "name": "Astrodev",
-    "email": "astrodev@email.com",
-    "password": "astrodev00"
-}
-
-// Response
-// status 201 CREATED
-{
-    message: "Cadastro realizado com sucesso"
-}
-```
----------------
-<br>
-
-## Create product
-Cadastra um novo produto.
-```typescript
-// Request
-// POST /products
-// body JSON
-{
-    "id": "prod003",
-    "name": "Teclado gamer",
-    "price": 200,
-    "description": "Teclado mecânico com numpad",
-    "imageUrl": "https://picsum.photos/seed/Teclado%20gamer/400"
-}
-
-// Response
-// status 201 CREATED
-{
-    message: "Produto cadastrado com sucesso"
-}
-```
-
----------------------
-<br>
-
-## Get all products funcionalidade 1
-Retorna todos os produtos cadastrados.
-```typescript
-// Request
-// GET /products
-
-// Response
-// status 200 OK
-[
-    {
-        id: "prod001",
-        name: "Mouse gamer",
-        price: 250,
-        description: "Melhor mouse do mercado!",
-        imageUrl: "https://picsum.photos/seed/Mouse%20gamer/400"
-    },
-    {
-        id: "prod002",
-        name: "Monitor",
-        price: 900,
-        description: "Monitor LED Full HD 24 polegadas",
-        imageUrl: "https://picsum.photos/seed/Monitor/400"
-    },
-    {
-        id: "prod003",
-        name: "Teclado gamer",
-        price: 200,
-        description: "Teclado mecânico com numpad",
-        imageUrl: "https://picsum.photos/seed/Teclado%20gamer/400"
-    }
-]
-```
-
----------------------------
-<br>
-
-## Get all products funcionalidade 2
-Caso seja enviada uma query params (name) deve ser retornado o resultado da busca de produtos que contenham o _"name"_ informado em seu nome.
-```typescript
-// Request
-// query params = name
-// GET /products?name=gamer
-
-// Response
-// status 200 OK
-[
-    {
-        id: "prod001",
-        name: "Mouse gamer",
-        price: 250,
-        description: "Melhor mouse do mercado!",
-        imageUrl: "https://picsum.photos/seed/Mouse%20gamer/400"
-    },
-    {
-        id: "prod003",
-        name: "Teclado gamer",
-        price: 200,
-        description: "Teclado mecânico com numpad",
-        imageUrl: "https://picsum.photos/seed/Teclado%20gamer/400"
-    }
-]
-```
-
----------------------------
-<br>
-
-## Edit product by id
-Edita um produto existente.
-```typescript
-// Request
-// path params = :id
-
-// PUT /products/prod003
-// body JSON
-{
-    "id": "prod0033",
-    "name": "Teclado gamer RGB",
-    "price": 300,
-    "description": "Teclado mecânico com RGB e numpad",
-    "imageUrl": "https://picsum.photos/seed/Teclado%20gamer%20RGB/400"
-}
-
-// Response
-// status 200 OK
-{
-    message: "Produto atualizado com sucesso"
-}
-```
-
----------------------------
-<br>
-
-## Create purchase
-Cadastra um novo pedido. Como dica, o exercício 1 da aula de [Relações em SQL II](https://github.com/labenuexercicios/relacoes-sql-II-exercicios) é uma boa referência.
-```typescript
-// Request
-// POST /purchases
-// body JSON
-{
-    "id": "pur001",
-    "buyer": "u001",
-    "products": [
-        {
-            "id": "prod001",
-            "quantity": 2
-        },
-        {
-            "id": "prod002",
-            "quantity": 1
-        }
-    ]
-}
-
-// Response
-// status 201 CREATED
-{
-    message: "Pedido realizado com sucesso"
-}
-```
+## Métodos
+Requisições para a API devem seguir os padrões:
+| Método | Descrição |
+|---|---|
+| `GET` | Retorna informações de um ou mais registros. |
+| `POST` | Utilizado para criar um novo registro. |
+| `PUT` | Atualiza dados de um registro ou altera sua situação. |
+| `DELETE` | Remove um registro do sistema. |
 
 
----------------------------
-<br>
+## Respostas
 
-## Delete purchase by id
-Deleta um pedido existente.
-```typescript
-// Request
-// path params = :id
-// DELETE /purchases/pur002
-
-// Response
-// status 200 OK
-{
-    message: "Pedido cancelado com sucesso"
-}
-```
+| Código | Descrição |
+|---|---|
+| `200` | Requisição executada com sucesso (success).|
+| `201` | Dados creado com sucesso(sucess).|
+| `400` | Erros de validação ou os campos informados não existem no sistema.|
+| `404` | Registro pesquisado não encontrado (Not found).|
+| `500` | Erro inesperado.|
 
 
----------------------------
-<br>
+## Iniciando 
 
-## Get purchase by id
-Retorna os dados de uma compra, incluindo a lista de produtos da mesma.
-```typescript
-// Request
-// path params = :id
-// GET /purchases/pur001
+Esse é um exemplo das intruções de como você configura o projeto localmente.
+Para ter uma copia local, siga os passos abaixo:
 
-// Response
-// status 200 OK
-{
-    purchaseId: "pur001",
-    buyerId: "u001",
-    buyerName: "Fulano",
-    buyerEmail: "fulano@email.com",
-    totalPrice: 1400,
-    createdAt: "2023-01-15 16:24:54",
-    paid: 0,
-    products: [
-        {
-            id: "prod001",
-            name: "Mouse gamer",
-            price: 250,
-            description: "Melhor mouse do mercado!",
-            imageUrl: "https://picsum.photos/seed/Mouse%20gamer/400",
-            quantity: 2
-        },
-        {
-            id: "prod002",
-            name: "Monitor",
-            price: 900,
-            description: "Monitor LED Full HD 24 polegadas",
-            imageUrl: "https://picsum.photos/seed/Monitor/400",
-            quantity: 1
-        }
-    ]
-}
-```
+### Instalação
 
+1. Clone do repositório
+   ```sh
+   git clone https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+   ```
+   
+2. Install NPM TypeScript packages 
+  ```sh
+  npm init -y (cria package.json)
+  ```
+  ```sh
+  npm i -g typescript (faz só 1 vez)
+  ```
+  ```sh
+  npm i typescript -D (instala typescript no projeto)
+  ```
+  ```sh
+  npx tsc -init (criar tsconfig.json)
+  ```
+  
+3. Install NPM Express packages 
+  
+  ```sh
+  npm install express
+  ```
+  ```sh
+  npm install @types/express -D
+  ```
+  
+4. Install NPM Cors packages 
+  
+  ```sh
+  npm install cors
+  ```
+  ```sh
+  npm install @types/cors -D
+  ```
+  
+5. Install NPM Node packages 
+  
+  ```sh
+  npm install ts-node-dev -D
+  ```
+6. Run NPM developer
 
----------------------------
-<br>
+  ```sh
+  npm run dev
+   ```
+## Uso
 
+Uma API onde pode ser criado um site de ecommerce, com usuário, produtos e compras. 
 
+## Contato
+
+Lucas Breia  - lucas.devfullstack021@gmail.com
+
+Project Link: [https://github.com/lucasbreiafullstack/projeto-labecommerce.git](https://github.com/lucasbreiafullstack/projeto-labecommerce.git)
+<br/>
+
+[![Linkedin](https://img.shields.io/badge/linkedin-%230A66C2.svg?&style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/andrejaques/)](https://www.linkedin.com/in/lucas-breia/)
+
+## Agradecimentos
+
+* Aos professores da Labenu.
+* Meus colegas de sala que me ajudaram no processo do projeto.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[contributors-url]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[forks-shield]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[forks-url]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[stars-shield]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[stars-url]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[issues-shield]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[issues-url]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[license-shield]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[license-url]: https://github.com/lucasbreiafullstack/projeto-labecommerce.git
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/lucas-breia/
+[product-screenshot]: readme-image/projeto-react-apis.gif
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com
+[Styled-components]:https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white
+[Styled-url]: https://www.styled-components.com/
+[Chakra-UI]: https://img.shields.io/static/v1?style=for-the-badge&message=Chakra+UI&color=319795&logo=Chakra+UI&logoColor=FFFFFF&label=
+[Chakra-url]: https://chakra-ui.com/getting-started
