@@ -18,7 +18,7 @@ https://dbdiagram.io/d/63c6e8e5296d97641d7a4666
 ## URLs de acesso
 Documentação da API com as instruções de uso de cada endpoint da aplicação Labecommerce.<br>
 
-[Labecommerce API](https://documenter.getpostman.com/view/24460684/2s8ZDU64QY)
+[Labecommerce API](https://documenter.getpostman.com/view/26572176/2s946chaKh)
 
 # Lista de requisitos
 
